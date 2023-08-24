@@ -1,11 +1,8 @@
 import { styled } from "styled-components";
 
 export const StyledSortBorder = styled.div`
-  position: absolute;
-  bottom: 290px;
-  left: 20px;
-  width: 30%;
-  height: 40%;
+  width: 400px;
+  height: 450px;
   font-family: "Inter";
   font-size: 20px;
   font-weight: 700;

@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@fontsource/inter": "^5.0.8",
+    "@mui/material": "^5.14.5",
     "@tanstack/react-query": "^4.32.6",
     "axios": "^1.4.0",
     "mapbox-gl": "^2.15.0",
     "maplibre-gl": "^3.3.0",
+    "material-ui-popup-state": "^5.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.1.3",

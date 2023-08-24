@@ -3,9 +3,14 @@ import { StyledSortBorder } from "./SortBorder.styled";
 
 type Props = {
   // onClick: () => void;
+  closepopup:() => void;
 };
 
-const SortBorder: FC<Props> = (() => {
+const SortBorder: FC<Props> = ({closepopup}) => {
+
+  const handle_closepopup = () => {
+    closepopup();
+  }
   return (
   <StyledSortBorder >
     <div id="checkbox_group">
@@ -52,9 +57,9 @@ const SortBorder: FC<Props> = (() => {
 
     <div id="button_group">
       <button>SET</button>
-      <button>CLOSE</button>
+      <button onClick={handle_closepopup}>CLOSE</button>
     </div>
   </StyledSortBorder>
-)});
+)};
 
 export default SortBorder;

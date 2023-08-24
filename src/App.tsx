@@ -12,6 +12,8 @@ import LegendModal from "./LegendModal/LegendModal";
 import DonateButton from "./DonateButton/DonateButton";
 import DonateModal from "./DonateModal/DonateModal";
 import SortBorder from "./Sort/SortBorder";
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import Popover from '@mui/material/Popover';
 
 function App() {
   const [showModal, setShowModal] = useState(true);
@@ -57,7 +59,34 @@ function App() {
       {showModal && <LandingModal dismiss={() => setShowModal(false)} />}
       {showDonate && <DonateModal dismiss={() => setShowDonate(false)} />}
       {showLegend && <LegendModal dismiss={() => setShowLegend(false)} />}
-      <SortBorder/>
+      <PopupState variant="popover" popupId="demo-popup-popover">
+        {(popupState) => (
+          <>
+            <button {...bindTrigger(popupState)}
+              id="popover"
+              type="button"
+              
+              className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1.5 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              // onClick={handleOpenDownLoad_Modal}
+            >
+              SORT
+            </button>
+            <Popover
+                {...bindPopover(popupState)}
+                anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+                }}
+            >
+            <SortBorder closepopup = {popupState.close}/>
+
+            {/* <button onClick={popupState.close}>close</button> */}
+            </Popover>
+          </>
+        )}
+      </PopupState>
+
+      {/* <SortBorder/> */}
       <LegendButton onClick={() => setShowLegend(true)} />
       <Footer />
     </StyledApp>
