@@ -11,6 +11,7 @@ import LegendButton from "./LegendButton/LegendButton";
 import LegendModal from "./LegendModal/LegendModal";
 import DonateButton from "./DonateButton/DonateButton";
 import DonateModal from "./DonateModal/DonateModal";
+import SortBorder from "./Sort/SortBorder";
 
 function App() {
   const [showModal, setShowModal] = useState(true);
@@ -26,10 +27,12 @@ function App() {
   });
 
   return (
+    <>
     <StyledApp>
       <h1 onClick={() => setShowModal(true)}>LandGrab Watch
       <DonateButton onClick={() => setShowDonate(true)} />
       </h1>
+      
       <Map
         mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
         mapLib={import("mapbox-gl")}
@@ -54,9 +57,12 @@ function App() {
       {showModal && <LandingModal dismiss={() => setShowModal(false)} />}
       {showDonate && <DonateModal dismiss={() => setShowDonate(false)} />}
       {showLegend && <LegendModal dismiss={() => setShowLegend(false)} />}
+      <SortBorder/>
       <LegendButton onClick={() => setShowLegend(true)} />
       <Footer />
     </StyledApp>
+    </>
+
   );
 }
 
