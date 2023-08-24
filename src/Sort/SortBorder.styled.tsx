@@ -53,7 +53,7 @@ export const StyledSortBorder = styled.div`
     display: flex;
     justify-items: center;
     justify-content: space-between;
-    padding: 20px 50px;
+    padding: 25px 50px;
   
   }
 
