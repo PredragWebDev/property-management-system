@@ -8,7 +8,7 @@ type Props = {
 const SortBorder: FC<Props> = (() => {
   return (
   <StyledSortBorder >
-    <div>
+    <div id="checkbox_group">
       <p>Sort boarder</p>
       <label>
         <input type="checkbox" id="1" value={'from_listed_to_sold'}/>
@@ -48,6 +48,11 @@ const SortBorder: FC<Props> = (() => {
         <input type="checkbox" id="1" value={'sold_multiple_times'}/>
         Properties Sold Multiple Times in a Short Period
       </label>
+    </div>
+
+    <div id="button_group">
+      <button>SET</button>
+      <button>CLOSE</button>
     </div>
   </StyledSortBorder>
 )});
