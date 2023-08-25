@@ -19,7 +19,7 @@ function App() {
   const [showModal, setShowModal] = useState(true);
   const [showLegend, setShowLegend] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
-
+  const [sortFilerData, setSortFilterData] = useState([]);
   const { data } = useQuery<any, unknown, Property[], any>({
     queryKey: [
       "get_properties",
@@ -27,6 +27,61 @@ function App() {
       // { params: { start_date: "2023-08-08" } } as AxiosRequestConfig,
     ],
   });
+
+  const setSortFilter = (data: any) => {
+    setSortFilterData(data);
+  }
+
+  const [checkbox_data, setCheckBox] = useState([
+    {
+      id:'1',
+      label:'From Listed to Sold in a very short time',
+      isChecked:false,
+      value:'rapid_sale_check'
+    },
+    {
+      id: '2',
+      label:'Multiple properties bought by a single company/person',
+      isChecked:false,
+      value:'multiple_purchases_by_buyer'
+    },
+    {
+      id:'3',
+      label:'Substantial Price Drop',
+      isChecked:false,
+      value:'substantial_price_drop'
+    },
+    {
+      id:'4',
+      label:'Bulk Property Purchases',
+      isChecked:false,
+      value: 'bulk_sale_check'
+    },
+    {
+      id:'6',
+      label:'Properties Replaced by Non-residential Structures',
+      isChecked:false
+    },
+    {
+      id:'7',
+      label:'Rapid Relisting',
+      isChecked:false,
+      value:'rapid_relist_check'
+    },
+    {
+      id:'8',
+      label:'Frequent Status Changes',
+      isChecked:false,
+      value:'frequent_change_check'
+    },
+    {
+      id:'5',
+      label:'Properties Sold Multiple Times in a Short Period',
+      isChecked:false,
+      value:'frequent_sales_check'
+    }
+
+  ]);
 
   return (
     <>
@@ -53,7 +108,7 @@ function App() {
         // onDrag={(e) => console.log(e)}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
-        {!!data && <MapItems properties={data} />}
+        {!!data && <MapItems properties={data} filterData = {sortFilerData}/>}
       </Map>
       <Drawer />
       {showModal && <LandingModal dismiss={() => setShowModal(false)} />}
@@ -78,7 +133,7 @@ function App() {
                 horizontal: 'left',
                 }}
             >
-            <SortBorder closepopup = {popupState.close}/>
+            <SortBorder closepopup = {popupState.close} setSortFilter = {setSortFilter} checkbox_data = {checkbox_data} setCheckBox = {setCheckBox} />
 
             {/* <button onClick={popupState.close}>close</button> */}
             </Popover>
@@ -86,7 +141,6 @@ function App() {
         )}
       </PopupState>
 
-      {/* <SortBorder/> */}
       <LegendButton onClick={() => setShowLegend(true)} />
       <Footer />
     </StyledApp>

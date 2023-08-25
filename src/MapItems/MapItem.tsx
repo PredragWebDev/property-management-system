@@ -8,9 +8,10 @@ import { chooseEmoji } from "../utils/chooseEmoji";
 
 type Props = {
   property: Property;
+  filterData: any [];
 };
 
-const MapItem: FC<Props> = ({ property }) => {
+const MapItem: FC<Props> = ({ property, filterData }) => {
   const selectProperty = useDrawerStore((state) => state.selectProperty);
   const selectedProperty = useDrawerStore((state) => state.selectedProperty);
 
@@ -21,21 +22,31 @@ const MapItem: FC<Props> = ({ property }) => {
   const isSelected = selectedPropertyUniqueId === currentPropertyUniqueId;
 
   return (
-    <Marker
-      latitude={property.latitude}
-      longitude={property.longitude}
-      style={{ cursor: "pointer" }}
-      onClick={() => {
-        selectProperty(property);
-      }}
-    >
-      <StyledMapItem
-        selected={isSelected}
-        background={stringToPastelColor(property.listing_brokers[0])}
-      >
-        {chooseEmoji(property.events[0].description)}
-      </StyledMapItem>
-    </Marker>
+
+      <div>
+        {filterData.map((data) => {
+          const display = (property[data] !== false) ? data : "";
+
+          return (display !== "") ? (
+            <Marker
+              latitude={property.latitude}
+              longitude={property.longitude}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                selectProperty(property);
+              }}
+            >
+              <StyledMapItem
+                selected={isSelected}
+                background={stringToPastelColor(property.listing_brokers[0])}
+              >
+                {chooseEmoji(display)}
+              </StyledMapItem>
+            </Marker>
+
+            ) : null;
+        })}
+      </div>
   );
 };
 
