@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { StyledSortBorder } from "./SortBorder.styled";
+import { chooseEmoji } from "../utils/chooseEmoji";
 
 type Props = {
   // onClick: () => void;
@@ -50,6 +51,7 @@ const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, setChe
       {checkbox_data.map((box) => {
           return (
               <label key = {box.id}>
+                  {/* {chooseEmoji(box.value)} */}
                   <input type="checkbox" id={box.id} checked = {box.isChecked} value={box.value} onChange={handleCheckboxChange} />
                   {box.label}
               </label>

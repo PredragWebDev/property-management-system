@@ -41,7 +41,9 @@ const MapItem: FC<Props> = ({ property, filterData }) => {
                   selected={isSelected}
                   background={stringToPastelColor(property.listing_brokers[0])}
                 >
-                  {chooseEmoji(display)}
+                {chooseEmoji(property.events[0].description)}
+
+                  {/* {chooseEmoji(display)} */}
                 </StyledMapItem>
               </Marker>
 

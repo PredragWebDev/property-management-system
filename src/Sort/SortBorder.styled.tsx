@@ -87,8 +87,9 @@ export const StyledSortBorder = styled.div`
     display:flex;
     font-size:15px;
     margin-top:10px;
-
+    align-items:center;
   }
+
   @media (min-width: 800px) {
     h1 {
       font-family: "Inter";
