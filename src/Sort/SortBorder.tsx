@@ -11,57 +11,6 @@ type Props = {
 
 const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, setCheckBox}) => {
 
-  // const [checkbox_data, setCheckBox] = useState([
-  //   {
-  //     id:'1',
-  //     label:'From Listed to Sold in a very short time',
-  //     isChecked:false,
-  //     value:'rapid_sale_check'
-  //   },
-  //   {
-  //     id: '2',
-  //     label:'Multiple properties bought by a single company/person',
-  //     isChecked:false,
-  //     value:'multiple_purchases_by_buyer'
-  //   },
-  //   {
-  //     id:'3',
-  //     label:'Substantial Price Drop',
-  //     isChecked:false,
-  //     value:'substantial_price_drop'
-  //   },
-  //   {
-  //     id:'4',
-  //     label:'Bulk Property Purchases',
-  //     isChecked:false,
-  //     value: 'bulk_sale_check'
-  //   },
-  //   {
-  //     id:'6',
-  //     label:'Properties Replaced by Non-residential Structures',
-  //     isChecked:false
-  //   },
-  //   {
-  //     id:'7',
-  //     label:'Rapid Relisting',
-  //     isChecked:false,
-  //     value:'rapid_relist_check'
-  //   },
-  //   {
-  //     id:'8',
-  //     label:'Frequent Status Changes',
-  //     isChecked:false,
-  //     value:'frequent_change_check'
-  //   },
-  //   {
-  //     id:'5',
-  //     label:'Properties Sold Multiple Times in a Short Period',
-  //     isChecked:false,
-  //     value:'frequent_sales_check'
-  //   }
-
-  // ]);
-
   const handleCheckboxChange = (event: { target: { id: any; checked: any; }; }) => {
     const {id, checked} = event.target;
 

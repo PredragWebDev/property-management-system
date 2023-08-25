@@ -24,28 +24,46 @@ const MapItem: FC<Props> = ({ property, filterData }) => {
   return (
 
       <div>
-        {filterData.map((data) => {
-          const display = (property[data] !== false) ? data : "";
+        {(filterData.length> 0) ? (
+          filterData.map((data) => {
+            const display = (property[data] !== false) ? data : "";
 
-          return (display !== "") ? (
-            <Marker
-              latitude={property.latitude}
-              longitude={property.longitude}
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                selectProperty(property);
-              }}
-            >
-              <StyledMapItem
-                selected={isSelected}
-                background={stringToPastelColor(property.listing_brokers[0])}
+            return (display !== "") ? (
+              <Marker
+                latitude={property.latitude}
+                longitude={property.longitude}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  selectProperty(property);
+                }}
               >
-                {chooseEmoji(display)}
-              </StyledMapItem>
-            </Marker>
+                <StyledMapItem
+                  selected={isSelected}
+                  background={stringToPastelColor(property.listing_brokers[0])}
+                >
+                  {chooseEmoji(display)}
+                </StyledMapItem>
+              </Marker>
 
-            ) : null;
-        })}
+              ) : null;
+          })
+        ):(
+          <Marker
+            latitude={property.latitude}
+            longitude={property.longitude}
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              selectProperty(property);
+            }}
+          >
+            <StyledMapItem
+              selected={isSelected}
+              background={stringToPastelColor(property.listing_brokers[0])}
+            >
+              {chooseEmoji(property.events[0].description)}
+            </StyledMapItem>
+          </Marker>
+        )}
       </div>
   );
 };
