@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { StyledSortBorder } from "./SortBorder.styled";
 // import { DatePicker } from '@mui/lab';
-// import { chooseEmoji } from "../utils/chooseEmoji";
+import { chooseEmoji } from "../utils/chooseEmoji";
 
 type Props = {
   // onClick: () => void;
@@ -105,7 +105,7 @@ const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, histor
         {checkbox_data.map((box) => {
             return (
               <label key = {box.id}>
-                  {/* {chooseEmoji(box.value)} */}
+                  {chooseEmoji(box.value)}
                   <input type="checkbox" id={box.id} checked = {box.isChecked} value={box.value} onChange={handleCheckboxChange} />
                   {box.label}
               </label>

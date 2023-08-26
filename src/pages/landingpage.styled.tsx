@@ -7,18 +7,18 @@ export const LandingPageStyled = styled.div`
     justify-content: center;
     padding: 50px 0;
 
-    a {
-        background: green ;
-        border-radius: 18px;
-        color: black ;
-        font-size: 30px;
-        font-weight: bold ;
-        letter-spacing: 2px;
-        margin-left: 10px;
-        margin-right:10px;
-        padding: 10px;
-        text-align: center ; 
-    }
+    // a {
+    //     background: green ;
+    //     border-radius: 18px;
+    //     color: black ;
+    //     font-size: 30px;
+    //     font-weight: bold ;
+    //     letter-spacing: 2px;
+    //     margin-left: 10px;
+    //     margin-right:10px;
+    //     padding: 10px;
+    //     text-align: center ; 
+    // }
     
 
     div#board {
@@ -38,8 +38,10 @@ export const LandingPageStyled = styled.div`
     }
 
     div#event_names {
+        width:100%;
         margin-top:20px;
-        display:grid;
+        display:flex;
+        justify-content: space-around;
     }
 
     h1 {

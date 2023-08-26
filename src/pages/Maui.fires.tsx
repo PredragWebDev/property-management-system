@@ -24,7 +24,7 @@ function Maui() {
   const [showDonate, setShowDonate] = useState(false);
   const [sortFilerData, setSortFilterData] = useState([]);
   const [historyFiterData, setHistoryFilterData] = useState([]);
-  const [fromDate, setFromDate] = useState(new Date().toISOString().slice(0,10));
+  const [fromDate, setFromDate] = useState(new Date('2023-08-09').toISOString().slice(0,10));
   const [endDate, setEndDate] = useState(new Date().toISOString().slice(0,10));
 
   // const history = useHistory();
