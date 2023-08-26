@@ -20,7 +20,7 @@ function App() {
   const [showLegend, setShowLegend] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
   const [sortFilerData, setSortFilterData] = useState([]);
-
+  const [historyFiterData, setHistoryFilterData] = useState([]);
   const [fromDate, setFromDate] = useState(new Date().toISOString().slice(0,10));
   const [endDate, setEndDate] = useState(new Date().toISOString().slice(0,10));
 
@@ -46,6 +46,8 @@ function App() {
   const setSortFilter = (data: any) => {
     setSortFilterData(data);
   }
+
+
 
   const [checkbox_data, setCheckBox] = useState([
     {
@@ -99,6 +101,20 @@ function App() {
 
   ]);
 
+  const [history_filter, setHistoryFilter] = useState([
+    {
+      id:'1',
+      label:'All listed properties',
+      isChecked:false,
+      value:"listed"
+    },
+    {
+      id:'2',
+      label:' buying/selling entities',
+      isChecked:false,
+      value:"sold"
+    }
+  ])
   return (
     <>
     <StyledApp>
@@ -124,7 +140,7 @@ function App() {
         // onDrag={(e) => console.log(e)}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
-        {!!data && <MapItems properties={data} filterData = {sortFilerData} fromDate = {fromDate} endDate = {endDate} />}
+        {!!data && <MapItems properties={data} filterData = {sortFilerData} historyFiterData = {historyFiterData} fromDate = {fromDate} endDate = {endDate} />}
       </Map>
       <Drawer />
       {showModal && <LandingModal dismiss={() => setShowModal(false)} />}
@@ -149,7 +165,7 @@ function App() {
                 horizontal: 'left',
                 }}
             >
-            <SortBorder closepopup = {popupState.close} setSortFilter = {setSortFilter} setFromDateFilter = {setFromDateFilter} setEndDateFilter = {setEndDateFilter} fromDate = {fromDate} endDate = {endDate} checkbox_data = {checkbox_data} setCheckBox = {setCheckBox} />
+            <SortBorder closepopup = {popupState.close} history_filter = {history_filter} setHistoryFilter = {setHistoryFilter} setHistoryFilterData = {setHistoryFilterData} setSortFilter = {setSortFilter} setFromDateFilter = {setFromDateFilter} setEndDateFilter = {setEndDateFilter} fromDate = {fromDate} endDate = {endDate} checkbox_data = {checkbox_data} setCheckBox = {setCheckBox} />
 
             {/* <button onClick={popupState.close}>close</button> */}
             </Popover>

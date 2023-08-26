@@ -44,17 +44,25 @@ export const StyledSortBorder = styled.div`
     width:100%;
     height: 80%;
 
+    overflow: auto;
+
   }
 
   div#button_group {
     width: 100%;
-    height: 20%;
+    height: 15%;
 
+    position:absolute;
+    bottom:0;
     display: flex;
     justify-items: center;
     justify-content: space-between;
-    padding: 25px 50px;
+    padding: 15px 50px;
   
+  }
+
+  div#line {
+    border-bottom:2px solid #ff4e4e;
   }
 
   div#label_time {

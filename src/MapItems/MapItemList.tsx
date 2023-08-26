@@ -7,16 +7,20 @@ type Props = {
   filterData: any[];
   fromDate: any;
   endDate: any;
+  historyFiterData:any[];
 };
 
-const MapItems: FC<Props> = ({ properties, filterData, fromDate, endDate }) => {
+const MapItems: FC<Props> = ({ properties, filterData, fromDate, endDate, historyFiterData }) => {
   console.log('end data>>>>', endDate);
 
   const filteredProperties = properties.filter((prop) => {
-    // console.log('from data>>>>', new Date(prop.events[0].date) );
 
-    // return new Date(prop.events[0].date).valueOf() > new Date("2023-08-08").valueOf();
-    return new Date(prop.events[0].date).valueOf() >= new Date(fromDate).valueOf() && new Date(prop.events[0].date).valueOf() <= new Date(endDate).valueOf();
+    return (new Date(prop.events[0].date).valueOf() >= new Date(fromDate).valueOf() && new Date(prop.events[0].date).valueOf() <= new Date(endDate).valueOf() && (prop.events.map((e) => {
+      historyFiterData.map((data) => {
+        
+          e.description === data ? true :false;
+      })
+    })));
 
   });
 

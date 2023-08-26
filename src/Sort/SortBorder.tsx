@@ -12,10 +12,12 @@ type Props = {
   setEndDateFilter: (date:Date) => void;
   fromDate:any;
   endDate:any;
+  history_filter:Array<{ id: string; label: string; isChecked: boolean; value: string; }>;
+  setHistoryFilterData:(data:any) => void;
+  setHistoryFilter: (data:any) => void;
 };
 
-const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, fromDate, endDate, setCheckBox, setFromDateFilter, setEndDateFilter}) => {
-
+const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, history_filter, setHistoryFilter, fromDate, endDate, setCheckBox, setFromDateFilter, setEndDateFilter}) => {
 
   // const curDate = new Date().toISOString().slice(0, 10);
 
@@ -24,12 +26,23 @@ const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, fromDa
     const {id, checked} = event.target;
 
     setCheckBox((prevCheckboxes: any[]) =>
-        prevCheckboxes.map((checkbox: { id: any; }) => checkbox.id === id
-          ? { ...checkbox, isChecked: checked }
-          : checkbox
-        )
-      );
+      prevCheckboxes.map((checkbox: { id: any; }) => checkbox.id === id
+        ? { ...checkbox, isChecked: checked }
+        : checkbox
+      )
+    );
   }   
+
+  const handleHistoryChange = (event: { target: { id: any; checked: any; }; }) => {
+    const {id, checked} = event.target;
+
+    setHistoryFilter((prevCheckboxes: any[]) =>
+      prevCheckboxes.map((checkbox: { id: any; }) => checkbox.id === id
+        ? { ...checkbox, isChecked: checked }
+        : checkbox
+      )
+    );
+  } 
 
   const handleFromdate = (event:any) => {
     setFromDateFilter(event.target.value);
@@ -58,35 +71,55 @@ const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, fromDa
     console.log('filter data>>>>>>', tempData);
 
     setSortFilter(tempData);
+
+    tempData = [];
+
+    history_filter.map((data) => {
+      if (data.isChecked) {
+        tempData.push(data.value);
+      }
+    })
   
     closepopup();
   }
 
   return (
   <StyledSortBorder >
-    <div id="checkbox_group">
       <div id='label_time'>
         <p>Filter Board</p>
         <input type="date" id='time' value={fromDate} onChange={handleFromdate}/>
         -
         <input type="date" id='time' value={endDate} onChange={handleEnddate}/>
       </div>
-      {checkbox_data.map((box) => {
-          return (
+      <div id="checkbox_group">
+
+        {history_filter.map((box) => {
+            return (
+              <label key = {box.id}>
+                  {/* {chooseEmoji(box.value)} */}
+                  <input type="checkbox" id={box.id} checked = {box.isChecked} value={box.value} onChange={handleHistoryChange} />
+                  {box.label}
+              </label>
+            )
+        })}
+        <div id="line"></div>
+        {checkbox_data.map((box) => {
+            return (
               <label key = {box.id}>
                   {/* {chooseEmoji(box.value)} */}
                   <input type="checkbox" id={box.id} checked = {box.isChecked} value={box.value} onChange={handleCheckboxChange} />
                   {box.label}
               </label>
-          )
-      })}
+            )
+        })}
 
-    </div>
+      </div>
 
-    <div id="button_group">
-      <button onClick={handle_set}>SET</button>
-      <button onClick={handle_closepopup}>CLOSE</button>
-    </div>
+      <div id="button_group">
+        <button onClick={handle_set}>SET</button>
+        <button onClick={handle_closepopup}>CLOSE</button>
+      </div>
+
   </StyledSortBorder>
 )};
 
