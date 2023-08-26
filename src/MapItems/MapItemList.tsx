@@ -15,12 +15,15 @@ const MapItems: FC<Props> = ({ properties, filterData, fromDate, endDate, histor
 
   const filteredProperties = properties.filter((prop) => {
 
-    return (new Date(prop.events[0].date).valueOf() >= new Date(fromDate).valueOf() && new Date(prop.events[0].date).valueOf() <= new Date(endDate).valueOf() && (prop.events.map((e) => {
+    return (historyFiterData.length > 0 ? (new Date(prop.events[0].date).valueOf() >= new Date(fromDate).valueOf() && new Date(prop.events[0].date).valueOf() <= new Date(endDate).valueOf() && (prop.events.map((e) => {
       historyFiterData.map((data) => {
         
           e.description === data ? true :false;
       })
-    })));
+    }))
+    ):(
+      new Date(prop.events[0].date).valueOf() >= new Date(fromDate).valueOf() && new Date(prop.events[0].date).valueOf() <= new Date(endDate).valueOf()
+    ));
 
   });
 
