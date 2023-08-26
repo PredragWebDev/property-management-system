@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { Marker } from "react-map-gl";
-import { Property } from "../types/Property";
+// import { Property } from "../types/Property";
 import { StyledMapItem } from "./MapItem.styled";
 import { stringToPastelColor } from "../utils/colorMappings";
 import { useDrawerStore } from "../stores/drawerStore";
 import { chooseEmoji } from "../utils/chooseEmoji";
 
 type Props = {
-  property: Property;
+  property: any;
   filterData: any [];
 };
 
@@ -27,6 +27,7 @@ const MapItem: FC<Props> = ({ property, filterData }) => {
         {(filterData.length> 0) ? (
           filterData.map((data) => {
             const display = (property[data] !== false) ? data : "";
+
 
             return (display !== "") ? (
               <Marker

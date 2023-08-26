@@ -20,6 +20,21 @@ function App() {
   const [showLegend, setShowLegend] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
   const [sortFilerData, setSortFilterData] = useState([]);
+
+  const [fromDate, setFromDate] = useState(new Date().toISOString().slice(0,10));
+  const [endDate, setEndDate] = useState(new Date().toISOString().slice(0,10));
+
+  // const [fromDate, setFromDate] = useState(new Date().toISOString().slice(0, 10));
+  // const [endDate, setEndDate] = useState(new Date().toISOString().slice(0, 10));
+
+  const setFromDateFilter = (date:any) => {
+    setFromDate(date);
+  }
+
+  const setEndDateFilter = (date:any) => {
+    setEndDate(date);
+  }
+
   const { data } = useQuery<any, unknown, Property[], any>({
     queryKey: [
       "get_properties",
@@ -60,7 +75,8 @@ function App() {
     {
       id:'6',
       label:'Properties Replaced by Non-residential Structures',
-      isChecked:false
+      isChecked:false,
+      value:''
     },
     {
       id:'7',
@@ -108,7 +124,7 @@ function App() {
         // onDrag={(e) => console.log(e)}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
-        {!!data && <MapItems properties={data} filterData = {sortFilerData}/>}
+        {!!data && <MapItems properties={data} filterData = {sortFilerData} fromDate = {fromDate} endDate = {endDate} />}
       </Map>
       <Drawer />
       {showModal && <LandingModal dismiss={() => setShowModal(false)} />}
@@ -133,7 +149,7 @@ function App() {
                 horizontal: 'left',
                 }}
             >
-            <SortBorder closepopup = {popupState.close} setSortFilter = {setSortFilter} checkbox_data = {checkbox_data} setCheckBox = {setCheckBox} />
+            <SortBorder closepopup = {popupState.close} setSortFilter = {setSortFilter} setFromDateFilter = {setFromDateFilter} setEndDateFilter = {setEndDateFilter} fromDate = {fromDate} endDate = {endDate} checkbox_data = {checkbox_data} setCheckBox = {setCheckBox} />
 
             {/* <button onClick={popupState.close}>close</button> */}
             </Popover>

@@ -57,6 +57,11 @@ export const StyledSortBorder = styled.div`
   
   }
 
+  div#label_time {
+    display:flex;
+    justify-content:space-between;
+  }
+
   button {
     background-color: #ff4e4e;
     border-radius: 5px;
@@ -80,6 +85,12 @@ export const StyledSortBorder = styled.div`
   input {
     display:block;
     margin-right:10px;
+  }
+
+  input#time {
+    width:100px;
+    font-size:12px;
+    margin-right:-10px
   }
 
   label {
