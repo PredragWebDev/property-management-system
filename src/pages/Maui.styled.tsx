@@ -29,6 +29,30 @@ export const StyledApp = styled.div`
       
   }
 
+  div#date {
+    position: fixed;
+    align-items:self-end;
+    display:flex;
+    position: fixed;
+    top: 75px;
+    left: 80px;
+    z-index: 1;
+    color: #ff4e4e;
+    padding: 5px 25px;
+    cursor: pointer;
+
+    transition: color box-shadow background-color 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  input#time {
+    width: 120px;
+    font-size: 15px;
+    height: 30px;
+    border-radius:5px;
+  }
+
   h1 {
     font-family: "Inter";
     font-size: 20px;
@@ -56,6 +80,27 @@ export const StyledApp = styled.div`
       font-size: 40px;
       top: 20px;
       left: 20px;
+    }
+
+    
+    div#date {
+      position: fixed;
+      align-items:self-end;
+      display:flex;
+      position: fixed;
+      top: 108px;
+      left: 100px;
+      z-index: 1;
+      color: #ff4e4e;
+      padding: 5px 25px;
+
+    }
+
+    input#time {
+      width: 160px;
+      font-size: 20px;
+      height: 30px;
+      border-radius:5px;
     }
   }
 `;

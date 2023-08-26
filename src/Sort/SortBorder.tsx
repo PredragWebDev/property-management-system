@@ -9,16 +9,12 @@ type Props = {
   setSortFilter:(data: any) => void;
   checkbox_data: Array<{ id: string; label: string; isChecked: boolean; value: string; }>;
   setCheckBox: (data:any) => void;
-  setFromDateFilter: (date:Date) => void;
-  setEndDateFilter: (date:Date) => void;
-  fromDate:any;
-  endDate:any;
   history_filter:Array<{ id: string; label: string; isChecked: boolean; value: string; }>;
   setHistoryFilterData:(data:any) => void;
   setHistoryFilter: (data:any) => void;
 };
 
-const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, history_filter, setHistoryFilter, fromDate, endDate, setCheckBox, setFromDateFilter, setEndDateFilter}) => {
+const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, history_filter, setHistoryFilter,  setCheckBox,}) => {
 
   // const curDate = new Date().toISOString().slice(0, 10);
 
@@ -45,15 +41,15 @@ const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, histor
     );
   } 
 
-  const handleFromdate = (event:any) => {
-    setFromDateFilter(event.target.value);
-    // setFromDate(event.target.value);
-  }
+  // const handleFromdate = (event:any) => {
+  //   setFromDateFilter(event.target.value);
+  //   // setFromDate(event.target.value);
+  // }
 
-  const handleEnddate = (e:any) => {
-    setEndDateFilter(e.target.value);
-    // setEndDate(e.target.value);
-  }
+  // const handleEnddate = (e:any) => {
+  //   setEndDateFilter(e.target.value);
+  //   // setEndDate(e.target.value);
+  // }
 
   const handle_closepopup = () => {
     closepopup();
@@ -92,9 +88,7 @@ const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, histor
         -
         <DatePicker value = {endDate} onChange = {handleEnddate}/> */}
 
-        <input type="date" id='time' value={fromDate} onChange={handleFromdate}/>
-        -
-        <input type="date" id='time' value={endDate} onChange={handleEnddate}/>
+        
       </div>
       <div id="checkbox_group">
 

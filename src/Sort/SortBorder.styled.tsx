@@ -17,7 +17,6 @@ export const StyledSortBorder = styled.div`
   transition: box-shadow 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out;
 
-
   h1 {
     font-family: "Inter";
     font-size: 20px;

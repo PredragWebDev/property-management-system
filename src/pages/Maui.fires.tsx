@@ -33,13 +33,13 @@ function Maui() {
   // const [fromDate, setFromDate] = useState(new Date().toISOString().slice(0, 10));
   // const [endDate, setEndDate] = useState(new Date().toISOString().slice(0, 10));
 
-  const setFromDateFilter = (date:any) => {
-    setFromDate(date);
-  }
+  // const setFromDateFilter = (date:any) => {
+  //   setFromDate(date);
+  // }
 
-  const setEndDateFilter = (date:any) => {
-    setEndDate(date);
-  }
+  // const setEndDateFilter = (date:any) => {
+  //   setEndDate(date);
+  // }
 
   const { data } = useQuery<any, unknown, Property[], any>({
     queryKey: [
@@ -133,6 +133,13 @@ function Maui() {
       <DonateButton onClick={() => setShowDonate(true)} />
       </h1>
 
+
+      <div id="date">
+        <input type="date" id='time' value={fromDate} onChange={(e) => setFromDate(new Date(e.target.value).toISOString().slice(0,10))}/>
+          -
+        <input type="date" id='time' value={endDate} onChange={(e) => setEndDate(new Date(e.target.value).toISOString().slice(0,10))}/>
+      </div>
+
       <GoBackButton onClick={() => goBack()} />
       
       <Map
@@ -178,7 +185,7 @@ function Maui() {
                 horizontal: 'left',
                 }}
             >
-            <SortBorder closepopup = {popupState.close} history_filter = {history_filter} setHistoryFilter = {setHistoryFilter} setHistoryFilterData = {setHistoryFilterData} setSortFilter = {setSortFilter} setFromDateFilter = {setFromDateFilter} setEndDateFilter = {setEndDateFilter} fromDate = {fromDate} endDate = {endDate} checkbox_data = {checkbox_data} setCheckBox = {setCheckBox} />
+            <SortBorder closepopup = {popupState.close} history_filter = {history_filter} setHistoryFilter = {setHistoryFilter} setHistoryFilterData = {setHistoryFilterData} setSortFilter = {setSortFilter} checkbox_data = {checkbox_data} setCheckBox = {setCheckBox} />
 
             {/* <button onClick={popupState.close}>close</button> */}
             </Popover>
