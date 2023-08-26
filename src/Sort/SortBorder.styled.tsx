@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 
 export const StyledSortBorder = styled.div`
-  width: 400px;
   height: 450px;
   font-family: "Inter";
   font-size: 20px;
@@ -109,12 +108,16 @@ export const StyledSortBorder = styled.div`
     align-items:center;
   }
 
-  @media (min-width: 800px) {
+  @media (max-width: 800px) {
     h1 {
       font-family: "Inter";
       font-size: 40px;
       top: 20px;
       left: 20px;
+    }
+
+    p {
+      font-size:20px;
     }
   }
 `

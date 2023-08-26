@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { StyledSortBorder } from "./SortBorder.styled";
+// import { DatePicker } from '@mui/lab';
 // import { chooseEmoji } from "../utils/chooseEmoji";
 
 type Props = {
@@ -87,6 +88,10 @@ const SortBorder: FC<Props> = ({closepopup, setSortFilter, checkbox_data, histor
   <StyledSortBorder >
       <div id='label_time'>
         <p>Filter Board</p>
+        {/* <DatePicker value = {fromDate} onChange = {handleFromdate}/>
+        -
+        <DatePicker value = {endDate} onChange = {handleEnddate}/> */}
+
         <input type="date" id='time' value={fromDate} onChange={handleFromdate}/>
         -
         <input type="date" id='time' value={endDate} onChange={handleEnddate}/>

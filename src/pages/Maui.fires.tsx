@@ -14,6 +14,9 @@ import DonateModal from "../DonateModal/DonateModal";
 import SortBorder from "../Sort/SortBorder";
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Popover from '@mui/material/Popover';
+import GoBackButton from "../goBackButton/GoBackButton";
+// import useHistory from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Maui() {
   const [showModal, setShowModal] = useState(true);
@@ -23,6 +26,9 @@ function Maui() {
   const [historyFiterData, setHistoryFilterData] = useState([]);
   const [fromDate, setFromDate] = useState(new Date().toISOString().slice(0,10));
   const [endDate, setEndDate] = useState(new Date().toISOString().slice(0,10));
+
+  // const history = useHistory();
+  let navigate = useNavigate();
 
   // const [fromDate, setFromDate] = useState(new Date().toISOString().slice(0, 10));
   // const [endDate, setEndDate] = useState(new Date().toISOString().slice(0, 10));
@@ -47,6 +53,11 @@ function Maui() {
     setSortFilterData(data);
   }
 
+  const goBack = () => {
+    console.log('go back okay?');
+    navigate('/');
+    // history.push('/');
+  }
 
 
   const [checkbox_data, setCheckBox] = useState([
@@ -121,6 +132,8 @@ function Maui() {
       <h1 onClick={() => setShowModal(true)}>LandGrab Watch
       <DonateButton onClick={() => setShowDonate(true)} />
       </h1>
+
+      <GoBackButton onClick={() => goBack()} />
       
       <Map
         mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
