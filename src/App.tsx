@@ -11,7 +11,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<LandingPage/>} />
             <Route path='/maui-fire' element={<Maui />} />
-            <Route path='/ca-hurricane' element={<Maui />} />
+            <Route path='/fl-hurricane' element={<Maui />} />
 
             {/* <Route path='/signup' element={<Signup />} />
             <Route path="/mainpage/:username" element={<MainPage/>}/>

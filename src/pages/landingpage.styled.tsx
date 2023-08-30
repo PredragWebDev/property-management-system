@@ -41,28 +41,62 @@ export const LandingPageStyled = styled.div`
         width:100%;
         margin-top:20px;
         display:flex;
-        justify-content: space-around;
+        flex-wrap:wrap;
+        // justify-content: space-around;
+    }
+
+    div#eventItem {
+        position: relative;
+        width:80%;
+        display: inline-block;
+
+        margin-top:20px;
+        margin-right:10%;
+        margin-left:10%;
+
+        border-radius:10px;
+        border:1px solid;
+    }
+
+    img#event_img {
+        border-radius:10px;
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 
     h1 {
         text-align:center;
         margin-top:50px;
-        font-size:60px;
+        font-size:30px;
     }
 
     h2 {
-        font-size:50px;
+        font-size:25px;
     }
 
-    @media (max-width: 800px) {
+    @media (min-width: 800px) {
         h1 {
             text-align:center;
             margin-top:50px;
-            font-size:30px;
+            font-size:60px;
         }
     
         h2 {
-            font-size:25px;
+            font-size:50px;
         }   
+
+        div#eventItem {
+            position: relative;
+            width:40%;
+            display: inline-block;
+    
+            margin-top:20px;
+            margin-right:5%;
+            margin-left:5%;
+
+            border:1px solid;
+            border-radius:10px;
+        }
     }
 `

@@ -21,15 +21,15 @@ function LandingPage () {
         {
             id:'2',
             img:Maui_fireIMG,
-            name:'Ca Hurricane',
-            event_state_mapping:'ca-hurricane'
+            name:'Fl Hurricane',
+            event_state_mapping:'fl-hurricane'
         }
     ]
 
     const handle_event = (id:string) => {
         Object(Event_names).map((e:any) => {
             if (e.id === id) {
-                navigate(`${e.event_state_mapping}`);
+                navigate(`${e.event_state_mapping}`,  {state: { param: `${e.event_state_mapping}` } });
             }
         })
     }
@@ -45,7 +45,7 @@ function LandingPage () {
                     <div id='event_names'>
                         {Object(Event_names).map((event:any) => {
                             return (
-                                <div id = 'eventItem' onClick={() => handle_event(event.id)} style={{ position: 'relative', width:'40%', display: 'inline-block' }}>
+                                <div id = 'eventItem' onClick={() => handle_event(event.id)} >
                                     <img
                                         id="event_img"
                                         src={event.img}

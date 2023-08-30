@@ -11,7 +11,6 @@ type Props = {
 };
 
 const MapItems: FC<Props> = ({ properties, filterData, fromDate, endDate, historyFiterData }) => {
-  console.log('end data>>>>', endDate);
 
   const filteredProperties = properties.filter((prop) => {
 

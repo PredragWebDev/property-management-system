@@ -1,10 +1,10 @@
-import { Property } from "../types/Property";
+// import { Property } from "../types/Property";
 import Map from "react-map-gl";
 import { StyledApp } from "./Maui.styled";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import MapItems from "../MapItems/MapItemList";
 import Drawer from "../Drawer/Drawer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LandingModal from "../LandingModal/LandingModal";
 import Footer from "../Footer/Footer";
 import LegendButton from "../LegendButton/LegendButton";
@@ -17,6 +17,8 @@ import Popover from '@mui/material/Popover';
 import GoBackButton from "../goBackButton/GoBackButton";
 // import useHistory from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 function Maui() {
   const [showModal, setShowModal] = useState(true);
@@ -26,28 +28,61 @@ function Maui() {
   const [historyFiterData, setHistoryFilterData] = useState([]);
   const [fromDate, setFromDate] = useState(new Date('2023-08-09').toISOString().slice(0,10));
   const [endDate, setEndDate] = useState(new Date().toISOString().slice(0,10));
-
-  // const history = useHistory();
+  const [properties, setProperties] = useState([]);
+ 
   let navigate = useNavigate();
 
-  // const [fromDate, setFromDate] = useState(new Date().toISOString().slice(0, 10));
-  // const [endDate, setEndDate] = useState(new Date().toISOString().slice(0, 10));
+  const location = useLocation();
+  const param = location.state?.param;
 
-  // const setFromDateFilter = (date:any) => {
-  //   setFromDate(date);
-  // }
+  
+  useEffect(() => {
 
-  // const setEndDateFilter = (date:any) => {
-  //   setEndDate(date);
-  // }
+    let isMounted = true;
 
-  const { data } = useQuery<any, unknown, Property[], any>({
-    queryKey: [
-      "get_properties",
-      // turn back on when this filters properties and not events
-      // { params: { start_date: "2023-08-08" } } as AxiosRequestConfig,
-    ],
-  });
+    const fetchData = async () => {
+      try {
+        const api_key = 'asd723erbkjhabsd8213';
+        const event_flag = param;
+        
+        const response = await axios.get(`https://api-new.landgrabwatch.com/get_properties?api_key=${api_key}&event_flag=${event_flag}&start_date=${fromDate}&end_date=${endDate}`);
+  
+        // console.log('default date>>>', response.data['default_start_date']);
+        setProperties(response.data['properties']);
+  
+        // setFromDate(new Date(response.data['default_start_date']).toISOString().slice(0,10));
+  
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (isMounted) {
+      console.log('test>>>>>>>>');
+
+      isMounted = false;
+      fetchData();
+    }
+
+    return () => {
+    };
+
+  }, [fromDate, endDate])
+
+  // useEffect (() => {
+  //   fetchData();
+
+  //   console.log('changed date>>>', fromDate);
+  // }, [])
+
+  // const { data } = useQuery<any, unknown, Property[], any>({
+  //   queryKey: [
+  //     "get_properties",
+  //     // turn back on when this filters properties and not events
+  //     // { params: { start_date: "2023-08-08" } } as AxiosRequestConfig,
+  //   ],
+  // });
 
   const setSortFilter = (data: any) => {
     setSortFilterData(data);
@@ -58,7 +93,6 @@ function Maui() {
     navigate('/');
     // history.push('/');
   }
-
 
   const [checkbox_data, setCheckBox] = useState([
     {
@@ -81,24 +115,18 @@ function Maui() {
     },
     {
       id:'4',
-      label:'Bulk Property Purchases',
+      label:'Single Entity Listing Bulk Properties',
       isChecked:false,
       value: 'bulk_sale_check'
     },
     {
       id:'6',
-      label:'Properties Replaced by Non-residential Structures',
-      isChecked:false,
-      value:''
-    },
-    {
-      id:'7',
       label:'Rapid Relisting',
       isChecked:false,
       value:'rapid_relist_check'
     },
     {
-      id:'8',
+      id:'7',
       label:'Frequent Status Changes',
       isChecked:false,
       value:'frequent_change_check'
@@ -160,7 +188,7 @@ function Maui() {
         // onDrag={(e) => console.log(e)}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
-        {!!data && <MapItems properties={data} filterData = {sortFilerData} historyFiterData = {historyFiterData} fromDate = {fromDate} endDate = {endDate} />}
+        {!!properties && <MapItems properties={properties} filterData = {sortFilerData} historyFiterData = {historyFiterData} fromDate = {fromDate} endDate = {endDate} />}
       </Map>
       <Drawer />
       {showModal && <LandingModal dismiss={() => setShowModal(false)} />}

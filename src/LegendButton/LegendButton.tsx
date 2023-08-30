@@ -10,3 +10,4 @@ const LegendButton: FC<Props> = ({ onClick }) => {
 };
 
 export default LegendButton;
+  
