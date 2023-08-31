@@ -1,9 +1,12 @@
 import { LandingPageStyled } from "./landingpage.styled";
 import Maui_fireIMG from '../icons/maui_fires.png';
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import LandingModal from "../LandingModal/LandingModal";
 // import EventIMG from "../Event_image/EventIMG";
 function LandingPage () {
 
+    const [showModal, setShowModal] = useState(true);
     let navigate = useNavigate();
 
     // const EVENT_STATE_MAPPING = {
@@ -79,6 +82,7 @@ function LandingPage () {
 
                 </div>
             </div>
+            {showModal && <LandingModal dismiss={() => setShowModal(false)} />}
         </LandingPageStyled>
             
 )}

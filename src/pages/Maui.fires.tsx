@@ -21,7 +21,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 function Maui() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [showLegend, setShowLegend] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
   const [sortFilerData, setSortFilterData] = useState([]);

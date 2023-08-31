@@ -54,7 +54,7 @@ const MapItem: FC<Props> = ({ property, filterData }) => {
           <Marker
             latitude={property.latitude}
             longitude={property.longitude}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", position: 'relative' }}
             onClick={() => {
               selectProperty(property);
             }}
