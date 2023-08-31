@@ -19,6 +19,7 @@ import GoBackButton from "../goBackButton/GoBackButton";
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { LngLatBounds } from "mapbox-gl";
 
 function Maui() {
   const [showModal, setShowModal] = useState(false);
@@ -29,21 +30,21 @@ function Maui() {
   const [fromDate, setFromDate] = useState(new Date('2023-08-09').toISOString().slice(0,10));
   const [endDate, setEndDate] = useState(new Date().toISOString().slice(0,10));
   const [properties, setProperties] = useState([]);
- 
+  const [initialViewState, setInitialViewState] = useState({});
+  const [maxBounds, setMaxBounds] = useState<LngLatBounds | undefined>(undefined);
+
   let navigate = useNavigate();
 
   const location = useLocation();
-  const param = location.state?.param;
+  const event_flag:string = location.state?.param;
 
   
   useEffect(() => {
 
-    let isMounted = true;
-
     const fetchData = async () => {
       try {
         const api_key = 'asd723erbkjhabsd8213';
-        const event_flag = param;
+        // const event_flag = param;
         
         const response = await axios.get(`https://api-new.landgrabwatch.com/get_properties?api_key=${api_key}&event_flag=${event_flag}&start_date=${fromDate}&end_date=${endDate}`);
   
@@ -58,15 +59,35 @@ function Maui() {
       }
     };
 
-    if (isMounted) {
-      console.log('test>>>>>>>>');
-
-      isMounted = false;
-      fetchData();
+    fetchData();
+    
+    switch (event_flag) {
+      case 'maui-fire':
+        setInitialViewState({
+          'longitude': -156.64771868530957,
+          'latitude': 20.913646483159667,
+          'zoom': 11.5,
+        });
+  
+        setMaxBounds(new LngLatBounds(
+          [-156.9752737894423, 20.672864436517315],
+          [-156.22767799535026, 21.174269005265103],
+        ))
+        break;
+      case 'fl-hurricane':
+        setInitialViewState({
+            'longitude': -81.5158,
+            'latitude': 27.9944,
+            'zoom': 11.5,
+        });
+  
+        setMaxBounds( new LngLatBounds(
+          [-87.634938, 24.396308],   // Southwest coordinates of Florida
+          [-79.974306, 31.001056],
+        ))
+  
     }
 
-    return () => {
-    };
 
   }, [fromDate, endDate])
 
@@ -161,7 +182,6 @@ function Maui() {
       <DonateButton onClick={() => setShowDonate(true)} />
       </h1>
 
-
       <div id="date">
         <input type="date" id='time' value={fromDate} onChange={(e) => setFromDate(new Date(e.target.value).toISOString().slice(0,10))}/>
           -
@@ -173,6 +193,8 @@ function Maui() {
       <Map
         mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
         mapLib={import("mapbox-gl")}
+        // initialViewState={initialViewState}
+        // maxBounds={maxBounds}
         initialViewState={{
           // lahaina location
           longitude: -156.64771868530957,
