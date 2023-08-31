@@ -82,8 +82,8 @@ function Maui() {
         });
   
         setMaxBounds( new LngLatBounds(
-          [-87.634938, 24.396308],   // Southwest coordinates of Florida
-          [-79.974306, 31.001056],
+          [-87.634938, 27.396308],   // Southwest coordinates of Florida
+          [-79.974306, 31.001056],   // Northeast coordinates of Florida
         ))
   
     }
@@ -193,21 +193,19 @@ function Maui() {
       <Map
         mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
         mapLib={import("mapbox-gl")}
-        // initialViewState={initialViewState}
-        // maxBounds={maxBounds}
-        initialViewState={{
-          // lahaina location
-          longitude: -156.64771868530957,
-          latitude: 20.913646483159667,
-          zoom: 11.5,
-        }}
-        maxBounds={[
-          [-156.9752737894423, 20.672864436517315],
-          [-156.22767799535026, 21.174269005265103],
-        ]}
-        // pitch={65}
-        // onClick={(e) => console.log(e)}
-        // onDrag={(e) => console.log(e)}
+        initialViewState={initialViewState}
+        maxBounds={maxBounds}
+        // initialViewState={{
+        //   // lahaina location
+        //   longitude: -156.64771868530957,
+        //   latitude: 20.913646483159667,
+        //   zoom: 11.5,
+        // }}
+        // maxBounds={[
+        //   [-156.9752737894423, 20.672864436517315],
+        //   [-156.22767799535026, 21.174269005265103],
+        // ]}
+        
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         {!!properties && <MapItems properties={properties} filterData = {sortFilerData} historyFiterData = {historyFiterData} fromDate = {fromDate} endDate = {endDate} />}
